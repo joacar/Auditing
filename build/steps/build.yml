@@ -16,7 +16,7 @@ steps:
     noCache: true
     
 - task: MSBuild@1
-  displayName: ${{ parameters.solution }}
+  displayName: Build ${{ parameters.solutionName }} solution
   inputs:
     solution: ${{ parameters.solution }}
     platform: '$(BuildPlatform)'
