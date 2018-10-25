@@ -15,7 +15,7 @@ steps:
     command: restore
     noCache: true
     
--task: MSBuild@1
+- task: MSBuild@1
   displayName: ${{ parameters.solution }}
   inputs:
     solution: ${{ parameters.solution }}
