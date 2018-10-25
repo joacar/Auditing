@@ -1,0 +1,15 @@
+﻿parameters:
+  displayName: 'Unit Tests'
+  projectName: '**/*.sln'
+  projectsPath: 'tests/*.Tests.csproj'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: ${{ parameters.displayName }}
+  inputs:
+    command: test
+    projects: ${{ parameters.projectsPath }}
+    arguments: -c $(BuildConfiguration) --no-build
+
+#--collect:"Code Coverage" 
+# -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings

@@ -1,0 +1,36 @@
+﻿trigger:
+- master
+
+name: $(Build.Id)
+
+pool:
+  vmImage: vs2017-win2016
+  
+variables:
+  BuildPlatform: Any Cpu
+  BuildConfiguration: Release
+  
+steps:
+- template: steps/build.yml
+  parameters:
+    solution: Auditing.sln
+    solutionName: Build
+    
+- template: steps/test.yml
+  parameters:
+    displayName: Unit Tests
+    projectsPath: tests//*.Tests.csproj
+    
+- task: PublishBuildArtifacts@1
+  displayName: Publish assembly
+  inputs:
+    PathToPublish: $(Build.ArtificatStagingDirectory)/bin
+    ArtifactName: $(BuildConfiguration)
+  conditions: and(succeeded(), and(succeeded(), eq(variables['system.pullrequest'], false)))
+    
+- task: PublishBuildArtifacts@1
+  displayName: Publish NuGet 
+  inputs:
+    PathToPublish: $(Build.ArtificatStagingDirectory)/NuGet
+    ArtifactName: NuGet
+  conditions: and(succeeded(), and(succeeded(), eq(variables['system.pullrequest'], false)))
