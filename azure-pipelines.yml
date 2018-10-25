@@ -1,7 +1,8 @@
 ﻿trigger:
 - master
 
-name: 'Auditing $(Date:yyyyMMdd).$(Rev:.r)'
+name: $(Rev:.r) 
+#'Auditing $(Date:yyyyMMdd).$(Rev:.r)'
 
 pool:
   vmImage: vs2017-win2016
