@@ -1,7 +1,7 @@
 ﻿trigger:
 - master
 
-name: $(Rev:.r) 
+name: $(Rev:r) 
 #'Auditing $(Date:yyyyMMdd).$(Rev:.r)'
 
 pool:
