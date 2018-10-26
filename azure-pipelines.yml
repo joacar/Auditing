@@ -24,7 +24,7 @@ steps:
     runner: xUnit
     mergeTestResults: true
     testResultsFiles: **/*.trx
-    searchFolder: $(Common.TestResultsDirectory)
+    searchFolder: $(Agent.TempDirectory) # Default path for writing test results
     
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
