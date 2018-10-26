@@ -9,14 +9,13 @@ steps:
   displayName: Restore
   inputs:
     command: restore
-    projects: '$(Parameters.RestoreBuildProjects)'
-
+    projects: '${{ Parameters.RestoreBuildProjects }}'
 
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
     command: build
-    projects: '$(Parameters.RestoreBuildProjects)'
+    projects: '${{ Parameters.RestoreBuildProjects }}'
     arguments: '--configuration $(BuildConfiguration)'
    
 #- task: NuGetToolInstaller@0
