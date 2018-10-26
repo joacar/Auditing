@@ -1,6 +1,5 @@
-﻿parameters:
+parameters:
   displayName: 'Unit Tests'
-  projectName: '**/*.sln'
   projectsPath: 'tests/*.Tests.csproj'
 
 steps:
@@ -9,7 +8,7 @@ steps:
   inputs:
     command: test
     projects: ${{ parameters.projectsPath }}
-    arguments: -c $(BuildConfiguration) --no-build
+    arguments: -c $(BuildConfiguration) -xml --no-build
 
 #--collect:"Code Coverage" 
 # -s $(System.DefaultWorkingDirectory)/CodeCoverage.runsettings
