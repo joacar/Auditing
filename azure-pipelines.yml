@@ -19,7 +19,7 @@ variables:
   
 steps:
 - powershell: |
-    Write-Host & git rev-parse --short $(Build.SourceVersion)
+    Write-Host "& git rev-parse --short $(Build.SourceVersion)"
   displayName: Set short source version
 - script: |
     set DOTNET_CLI_TELEMETRY_OPTOUT=1
