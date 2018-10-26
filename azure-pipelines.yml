@@ -1,5 +1,10 @@
-﻿trigger:
-- master
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
 
 name: $(Date:yyyyMMdd).$(Rev:rrr)
 
@@ -9,6 +14,7 @@ pool:
 variables:
   BuildPlatform: Any Cpu
   BuildConfiguration: Release
+  ProjectsPaths: **/*.csproj
   
 steps:
 - script: |
@@ -18,13 +24,10 @@ steps:
 #- bash: export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #  displayName: Disable dotnet telemetry
 
-- script: echo "Build triggered for reason $(Build.Reason) (commit $(Build.SourceRevision)) on branch $(Build.SourceBranchName)"
+- script: echo "Build triggered for reason '$(Build.Reason)' (commit $(Build.SourceVersion)) on branch '$(Build.SourceBranchName)'"
   displayName: Build information
 
 - template: build/steps/build.yml
-  parameters:
-    solution: Auditing.sln
-    solutionName: Auditing
     
 - template: build/steps/test.yml
 
