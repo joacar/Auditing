@@ -20,8 +20,9 @@ steps:
 - template: build/steps/test.yml
 
 - task: PublishTestResults@2
-    runner: xUnit
-    mergeTestResults: true
+    inputs:
+      runner: xUnit
+      mergeTestResults: true
     
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
