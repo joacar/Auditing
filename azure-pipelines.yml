@@ -16,6 +16,9 @@ steps:
 #- bash: export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #  displayName: Disable dotnet telemetry
 
+- script: echo "Build trigger by $(Build.Reason) (commit $(Build.SourceRevision)) on branch $(Build.BranchName)"
+  displayName: Build information
+
 - template: build/steps/build.yml
   parameters:
     solution: Auditing.sln
