@@ -19,7 +19,7 @@ variables:
   
 steps:
 - powershell: |
-    Write-Host "& git rev-parse --short $(Build.SourceVersion)"
+    & git rev-parse --short $(Build.SourceVersion)
   displayName: Set short source version
 - script: |
     set DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -46,13 +46,13 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
   inputs:
-    PathToPublish: $(Build.ArtificatStagingDirectory)/bin
+    PathToPublish: $(Build.ArtifactStagingDirectory)/bin
     ArtifactName: $(BuildConfiguration)
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     
 - task: PublishBuildArtifacts@1
   displayName: Publish NuGet 
   inputs:
-    PathToPublish: $(Build.ArtificatStagingDirectory)/NuGet
+    PathToPublish: $(Build.ArtifactStagingDirectory)/NuGet
     ArtifactName: NuGet
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
