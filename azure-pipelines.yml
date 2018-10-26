@@ -6,7 +6,7 @@ trigger:
     exclude:
     - README.md
 
-name: $(Date:yyyyMMdd).$(Rev:rrr)
+name: $(Date:yyyyMMdd)$(Rev:.r)
 
 pool:
   vmImage: vs2017-win2016  
@@ -14,7 +14,7 @@ pool:
 variables:
   BuildPlatform: Any Cpu
   BuildConfiguration: Release
-  ProjectsPaths: **/*.csproj
+  #ProjectsPaths: '**/*.csproj'
   
 steps:
 - script: |
