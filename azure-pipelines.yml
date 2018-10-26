@@ -35,7 +35,7 @@ steps:
 
 - task: PublishTestResults@2
   inputs:
-    runner: xUnit
+    runner: JUnit
     mergeTestResults: true
     testResultsFiles: '**/*.trx'
     # Default path for writing test results
@@ -46,6 +46,7 @@ steps:
   inputs:
     command: pack
     arguments: -o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --no-build
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
