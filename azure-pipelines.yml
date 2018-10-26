@@ -35,7 +35,9 @@ steps:
 
 - task: PublishTestResults@2
   inputs:
-    runner: JUnit
+    # Actual test runner is xUnit
+    # https://stackoverflow.com/a/46802160/2990956
+    runner: VSTest
     mergeTestResults: true
     testResultsFiles: '**/*.trx'
     # Default path for writing test results
