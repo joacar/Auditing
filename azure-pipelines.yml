@@ -18,9 +18,10 @@ steps:
     solutionName: Auditing
     
 - template: build/steps/test.yml
-  parameters:
-    displayName: Unit Tests
-    projectsPath: tests/*.Tests.csproj
+
+- task: PublishTestResults@2
+  runner: xUnit
+  mergeTestResults: true
     
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
