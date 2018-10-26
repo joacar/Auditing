@@ -1,7 +1,7 @@
 ﻿trigger:
 - master
 
-name: $(Date:yyyyMMdd).$(Rev:rrr) ($(Build.BuildNumber))
+name: $(Date:yyyyMMdd).$(Rev:rrr)
 
 pool:
   vmImage: vs2017-win2016  
