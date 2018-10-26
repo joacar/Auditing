@@ -45,7 +45,7 @@ steps:
   displayName: Pack
   inputs:
     command: pack
-    arguments: -o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration)
+    arguments: -o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --no-build
     
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
