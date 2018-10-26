@@ -1,7 +1,7 @@
 parameters:
   solution: '**/*.sln'
   solutionName: 'Build Solution'
-  projectsPath: 'src/**/*.csproj
+  projectsPath: 'src/**/*.csproj'
   
 steps:
 - task: DotNetCoreCLI@2
