@@ -48,11 +48,11 @@ steps:
   inputs:
     PathToPublish: $(Build.ArtificatStagingDirectory)/bin
     ArtifactName: $(BuildConfiguration)
-  condition: and(succeeded(), neq(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     
 - task: PublishBuildArtifacts@1
   displayName: Publish NuGet 
   inputs:
     PathToPublish: $(Build.ArtificatStagingDirectory)/NuGet
     ArtifactName: NuGet
-  condition: and(succeeded(), neq(variables['Build.Reason'], 'PullRequest'))
+  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
