@@ -19,7 +19,7 @@ variables:
   
 steps:
 - powershell: |
-    & git rev-parse --short $(Build.SourceVersion)
+    $env:SourceVersionShort = & git rev-parse --short $(Build.SourceVersion)
   displayName: Set short source version
 - script: |
     set DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -28,7 +28,7 @@ steps:
 #- bash: export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #  displayName: Disable dotnet telemetry
 
-- script: echo "Build triggered for reason '$(Build.Reason)' (commit $(Build.SourceVersion)) on branch '$(Build.SourceBranchName)'"
+- script: echo "Build triggered for reason '$(Build.Reason)' (commit $(SourceVersionShort)[$(Build.SourceVersion)]) on branch '$(Build.SourceBranchName)'"
   displayName: Build information
 
 - template: build/steps/build.yml
@@ -46,13 +46,13 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish assembly
   inputs:
-    PathToPublish: $(Build.ArtifactStagingDirectory)/bin
+    PathToPublish: $(Build.ArtifactStagingDirectory)
     ArtifactName: $(BuildConfiguration)
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
     
 - task: PublishBuildArtifacts@1
   displayName: Publish NuGet 
   inputs:
-    PathToPublish: $(Build.ArtifactStagingDirectory)/NuGet
+    PathToPublish: $(Build.ArtifactStagingDirectory)
     ArtifactName: NuGet
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
