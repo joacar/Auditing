@@ -1,20 +1,23 @@
 parameters:
   solution: '**/*.sln'
   solutionName: 'Build Solution'
+  RestoreBuildProjects: '**/*.csproj'
   projectsPath: '**/*.csproj'
   
 steps:
 - task: DotNetCoreCLI@2
-  displayName: Restore solution
+  displayName: Restore
   inputs:
     command: restore
-    projects: ${{ parameters.projectsPath }}
+    projects: '$(Parameters.RestoreBuildProjects)'
+
 
 - task: DotNetCoreCLI@2
-  displayName: Build solution
+  displayName: Build
   inputs:
     command: build
-    projects: ${{ parameters.projectsPath }}
+    projects: '$(Parameters.RestoreBuildProjects)'
+    arguments: '--configuration $(BuildConfiguration)'
    
 #- task: NuGetToolInstaller@0
 #  displayName: Use NuGet 4.7.1
