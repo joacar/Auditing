@@ -35,7 +35,7 @@ steps:
   inputs:
     runner: xUnit
     mergeTestResults: true
-    testResultsFiles: '**/TEST-*.trx'
+    testResultsFiles: '**/*.trx'
     # Default path for writing test results
     searchFolder: $(Agent.TempDirectory) 
     
