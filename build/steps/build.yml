@@ -1,23 +1,36 @@
-﻿parameters:
+parameters:
   solution: '**/*.sln'
   solutionName: 'Build Solution'
+  projectsPath: 'src/**/*.csproj
   
 steps:
-- task: NuGetToolInstaller@0
-  displayName: Use NuGet 4.7.1
+- task: DotNetCoreCLI@2
+  displayName: Restore solution
   inputs:
-    verisonSpec: 4.7.1
-    
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: ${{ parameters.solution }}
     command: restore
-    noCache: true
-    
-- task: MSBuild@1
-  displayName: Build ${{ parameters.solutionName }} solution
+    projects: ${{ parameters.projectsPath }}
+
+- task: DotNetCoreCLI@2
+  displayName: Build solution
   inputs:
-    solution: ${{ parameters.solution }}
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    command: build
+    projects: ${{ parameters.projectsPath }}
+   
+#- task: NuGetToolInstaller@0
+#  displayName: Use NuGet 4.7.1
+#  inputs:
+#    verisonSpec: 4.7.1
+    
+#- task: NuGetCommand@2
+#  displayName: 'NuGet restore'
+#  inputs:
+#    restoreSolution: ${{ parameters.solution }}
+#    command: restore
+#    noCache: true
+    
+#- task: MSBuild@1
+#  displayName: Build ${{ parameters.solutionName }} solution
+#  inputs:
+#    solution: ${{ parameters.solution }}
+#    platform: '$(BuildPlatform)'
+#    configuration: '$(BuildConfiguration)'
