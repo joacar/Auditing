@@ -1,6 +1,6 @@
 parameters:
   displayName: 'Unit Tests'
-  projectsPath: '**/tests/*.Tests.csproj'
+  projectsPath: 'tests/*Tests/*.Tests.csproj'
 
 steps:
 - task: DotNetCoreCLI@2
