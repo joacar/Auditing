@@ -20,14 +20,14 @@ steps:
 #  displayName: Use NuGet 4.7.1
 #  inputs:
 #    verisonSpec: 4.7.1
-    
+#
 #- task: NuGetCommand@2
 #  displayName: 'NuGet restore'
 #  inputs:
 #    restoreSolution: ${{ parameters.solution }}
 #    command: restore
 #    noCache: true
-    
+#
 #- task: MSBuild@1
 #  displayName: Build ${{ parameters.solutionName }} solution
 #  inputs:
